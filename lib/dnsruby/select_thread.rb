@@ -24,7 +24,10 @@ require 'set'
 require 'singleton'
 require 'dnsruby/validator_thread.rb'
 module Dnsruby
-  Thread::abort_on_exception = true
+  # This setting is causing app crashes when errors occur in various modules.
+  # This is causing various issues in Metasploit Pro and Framework.
+  # Disabling here since the global setting is incompatible with our apps.
+  #Thread::abort_on_exception = true
   class SelectThread #:nodoc: all
     class SelectWakeup < RuntimeError; end
     include Singleton
